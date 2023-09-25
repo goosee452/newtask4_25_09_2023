@@ -1,0 +1,12 @@
+.student{
+    display: flex;
+    flex-direction: column;
+    color: rgb(70, 70, 70);
+    font-family: monospace;
+    width: 50%;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+}
