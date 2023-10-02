@@ -1,0 +1,61 @@
+.student{
+    display: flex;
+    flex-direction: column;
+    color: rgb(70, 70, 70);
+    font-family: monospace;
+    background-color: rgb(238, 242, 208);
+    width: 40%;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+li{
+    list-style-type: none;
+    margin-right: 5px;
+}
+
+.visit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.grade{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.visit>div{
+    border-radius: 5px;
+    background-color: rgb(0, 194, 87);
+    padding: 5px;
+    border: 5px;
+    margin-right: 10px;
+}
+
+.grade>div{
+    border-radius: 5px;
+    background-color: rgb(0, 123, 194);
+    padding: 5px;
+    border: 5px;
+    margin-right: 10px;
+}
+
+.achievments>ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
