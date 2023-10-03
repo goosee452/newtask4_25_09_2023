@@ -13,7 +13,7 @@ function writeFiles(request, response, ...file_paths) {
     fileTypes.set('.png', 'image/png');
     fileTypes.set('.ico', 'image/x-icon');
     let extname = path.extname(request.url);
-
+    file_paths = file_paths.flat(Infinity);
     if (file_paths.length != 0) {
         for (let i = 0; i < file_paths.length; i++) {
             if (file_paths[i].includes(request.url)) {
@@ -45,18 +45,24 @@ function writePage_html(path, response, content) {
     }
 }
 
-let randData1 = stdnt.randStudent(stdnt.names, stdnt.surnames, stdnt.avatars);
-let randData2 = stdnt.randStudent(stdnt.names, stdnt.surnames, stdnt.avatars);
-let students = stdnt.writeStudentsPage(stdnt.randomStudent_html(randData1), stdnt.randomStudent_html(randData2));
+let randData = new Array(6);
+let avatars = new Array(6);
+for(let i = 0; i < 6; i++){
+    let stdnt_data = stdnt.randStudent(stdnt.names, stdnt.surnames, stdnt.avatars)
+    randData[i] = stdnt.randomStudent_html(stdnt_data);
+    avatars[i] = stdnt_data.avatar;
+}
+let students = stdnt.writeStudentsPage(randData);
 
 const server = http.createServer((request, response) => {
-    //console.log(students);
 
-
-    writeFiles(request, response, randData1.avatar + '', randData2.avatar + '', 'newtask4/index.css');
+    if(request.url != '/'){
+        writeFiles(request, response, avatars, './index.css');
+    }
     if (request.url == '/' || request.url == '/index.html') {
         writePage_html('', response, students);
     }
 });
 
 server.listen(2007);
+//, randData1.avatar + '', randData2.avatar + ''

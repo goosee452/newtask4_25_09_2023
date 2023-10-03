@@ -2,11 +2,11 @@ const { LOADIPHLPAPI } = require("dns");
 
 let avatars = new Array();
 avatars.push(
-    'newtask4/avatars/av1.png',
-    'newtask4/avatars/av2.png',
-    'newtask4/avatars/av3.png',
-    'newtask4/avatars/av4.png',
-    'newtask4/avatars/av5.png'
+    './avatars/av1.png',
+    './avatars/av2.png',
+    './avatars/av3.png',
+    './avatars/av4.png',
+    './avatars/av5.png'
 );
 
 let names = new Array();
@@ -40,12 +40,12 @@ function randStudent(names, surnames, avatars) {
         grade: randInt(100, 101, 0) / 10,
         visit: `${randInt(100, 101, 0)}%`,
         info: `
-        ${randInt(100, 31, 10)} 
-        ${randInt(10, 2, 0) == 1 ? 'fyr' : 'gdg'}${randInt(10, 2, 0) == 1 ? 'fty' : 'ggk'}${randInt(10, 2, 0) == 1 ? 'fgy' : 'gig'}${randInt(10000, 10001, 900)}@gmail.com 
-        ${randInt(10, 10, 1)}${randInt(10, 10, 0)}${randInt(10, 10, 0)}${randInt(10, 10, 0)}${randInt(10, 10, 1)}${randInt(10, 10, 0)}${randInt(10, 10, 1)} 
-        wtf
+        ${randInt(100, 31, 10)}mil
+        ${randInt(10, 2, 0) == 1 ? 'fyr' : 'gdg'}${randInt(10, 2, 0) == 1 ? 'fty' : 'ggk'}${randInt(10, 2, 0) == 1 ? 'fgy' : 'gig'}${randInt(10000, 10001, 900)}@gmail.comphn
+        ${randInt(10, 10, 1)}${randInt(10, 10, 0)}${randInt(10, 10, 0)}${randInt(10, 10, 0)}${randInt(10, 10, 1)}${randInt(10, 10, 0)}${randInt(10, 10, 1)}log
+        ${randInt(10, 2, 0) == 1 ? 'hh' : 'ff'}${randInt(10, 2, 0) == 1 ? 'tt' : 'kk'}${randInt(10, 2, 0) == 1 ? 'mm' : 'oo'}${randInt(10000, 10001, 900)}
         `,
-        last_seen: 'sususussuus'
+        last_seen: randInt(100, 32, 0) + '.'+randInt(100, 13, 0)+'.2023'
     }
     return student;
 }
@@ -58,10 +58,22 @@ function randomStudent_html(data) {
     <div class="group">Group:{{group}}</div>
     <div class='achievments'>
         <ul>
-            <li>{{diamonds}}</li>
-            <li>{{coins}}</li>
-            <li>{{comments}}</li>
-            <li>{{medals}}</li>
+            <li>
+            <i class="fa fa-diamond"></i>
+            {{diamonds}}
+            </li>
+            <li>
+            <i class="fa fa-circle"></i>
+            {{coins}}
+            </li>
+            <li>
+            <i class="fa fa-comment"></i>
+            {{comments}}
+            </li>
+            <li>
+            <i class="fa fa-trophy"></i>
+            {{medals}}
+            </li>
         </ul>
     </div>
     <div class="grade">
@@ -74,10 +86,22 @@ function randomStudent_html(data) {
     </div>
     <div class="info">
         <ul>
-            <li>AGE:{{age}}</li>
-            <li>{{mail}}</li>
-            <li>{{phone_number}}</li>
-            <li>{{login}}</li>
+            <li>
+            <i class="fa fa-meh-o"></i>
+            AGE:{{age}}
+            </li>
+            <li>
+            <i class="fa fa-envelope"></i>
+            {{mail}}
+            </li>
+            <li>
+            <i class="fa fa-phone"></i>
+            {{phone_number}}
+            </li>
+            <li>
+            <i class="fa fa-sign-in"></i>
+            {{login}}
+            </li>
         </ul>
     </div>
     <div class="last_seen">Last seen in MyStat: {{last_seen_date}}</div>
@@ -95,6 +119,11 @@ function randomStudent_html(data) {
     student = student.replace('{{coins}}', data.achievments.slice(data.achievments.indexOf('co') + 2, data.achievments.indexOf('cm')));    
     student = student.replace('{{comments}}', data.achievments.slice(data.achievments.indexOf('cm') + 2, data.achievments.indexOf('me')));    
     student = student.replace('{{medals}}', data.achievments.slice(data.achievments.indexOf('me') + 2, data.achievments.length));    
+    student = student.replace('{{age}}', data.info.slice(0, data.info.indexOf('mil')));
+    student = student.replace('{{mail}}', data.info.slice(data.info.indexOf('mil') + 3, data.info.indexOf('phn')));    
+    student = student.replace('{{phone_number}}', data.info.slice(data.info.indexOf('phn') + 3, data.info.indexOf('log')));    
+    student = student.replace('{{login}}', data.info.slice(data.info.indexOf('log') + 3, data.info.length));    
+    student = student.replace('{{last_seen_date}}', data.last_seen);    
 
     // let str = '';
     // str.indexOf()
@@ -110,7 +139,8 @@ function writeStudentsPage(...students) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
     </head>
     <body>
